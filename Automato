@@ -1,10 +1,12 @@
 package selenium.utils;
 
+import java.io.File;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -18,14 +20,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class Automato {
 
-	private String name;
 	WebDriver driver;
 
-	public Automato(String name){
-		new Automato(name, "www.google.com");
+	public Automato(){
+		new Automato("www.google.com");
 	}
-	public Automato(String name, String startingUrl){
-		this.name = name;
+	public Automato(String startingUrl){
 		setupBrowser(startingUrl);
 	}
 
@@ -36,14 +36,15 @@ public class Automato {
 	 */
 	private boolean setupBrowser(String startingUrl){
 		try{
-			driver = new FirefoxDriver();
+			FirefoxProfile profile = new FirefoxProfile(new File("lib/FF Profile"));
+			driver = new FirefoxDriver(profile);
 			driver.get(startingUrl);
 		} catch (Exception e){
 			e.printStackTrace();
 			return false;
 		}
 
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
 		return true;
 	}
@@ -54,7 +55,7 @@ public class Automato {
 	 * @param Url
 	 * @return
 	 */
-	public boolean navigateTo(String Url){
+	public boolean get(String Url){
 		try{
 			driver.get(Url);
 		} catch (Exception e){
@@ -64,24 +65,29 @@ public class Automato {
 		return true;
 	}
 
-	// GETTERS AND SETTERS BLOCK
-
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public WebDriver getDriver() {
-		return driver;
-	}
-	public void setDriver(WebDriver driver) {
-		this.driver = driver;
-	}
-
-	//END OF GETTERS AND SETTERS
-
 	//START OF CLICK BLOCK
+	
+	public boolean click(String locator){
+		return click(getByElement(locator));
+	}
+	
+	public boolean click(By by){
+		try{
+			WebElement element = (new WebDriverWait(driver, 30)).until(ExpectedConditions.presenceOfElementLocated(by));
+			element.click();
+			return true;
+		} catch (StaleElementReferenceException e){
+			System.out.println("StaleElementReference ON: " + by.toString());
+			return false;
+		} catch (TimeoutException e){
+			System.out.println("Timeout ON: " + by.toString());
+			return false;
+		} catch (Exception e){
+			System.out.println("Exception ON: " + by.toString());
+			return false;
+		}
+	}
+	
 	/**
 	 * TESTED
 	 */
@@ -130,7 +136,10 @@ public class Automato {
 			element = By.name(locator.replaceAll("value=", "").trim().replaceAll("['\"]", ""));
 		}
 		else if(locator.startsWith("xpath=")){
-			element = By.xpath(locator.replaceAll("xpath=", "").trim().replaceAll("['\"]", ""));
+			element = By.xpath(locator.replaceAll("xpath=", "").trim().replaceAll("[\"]", ""));
+		}
+		else{
+			System.out.println("MALFORMED BY ELEMENT");
 		}
 
 		return element;
@@ -151,6 +160,7 @@ public class Automato {
 
 	public WebElement getWebElement(By element){
 		try{
+			waitUntilPresent(element);
 			return getWebElements(element).get(0);
 		} catch(Exception e){
 			e.printStackTrace();
@@ -183,30 +193,51 @@ public class Automato {
 	//END OF GET WEBELEMENTS BLOCK
 
 	//START OF KEYSEND BLOCK
-	/**
-	 * TODO: LIGHTLY TESTED
-	 */ 
-	public boolean sendKeysIfExists(String locator, String keys){
-		return sendKeysIfExists(getByElement(locator), keys);
+
+	public boolean sendKeys(String locator, String keys){
+		return sendKeys(getByElement(locator), keys);
 	}
 
-	/**
-	 * TODO: LIGHTLY TESTED
-	 * @param element
-	 * @param keys
-	 * @return
-	 */
-	public boolean sendKeysIfExists(By element, String keys){
-		return sendKeysIfExists(getWebElement(element), keys);
+	public boolean sendKeys(By element, String keys){
+		try{
+			waitUntilPresent(element);
+			return sendKeys(getWebElement(element), keys);
+		} catch (Exception e){
+			e.printStackTrace();
+			return false;
+		}
 	}
 
-	/**
-	 * TODO: LIGHTLY TESTED
-	 * @param element
-	 * @param keys
-	 * @return
-	 */
-	public boolean sendKeysIfExists(WebElement element, String keys){
+
+	public boolean sendKeys(WebElement element, String keys){
+		try{
+			element.sendKeys(keys);
+		} catch (Exception e){
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	// KEYS SUB BLOCK
+	
+	
+	public boolean sendKeys(String locator, Keys keys){
+		return sendKeys(getByElement(locator), keys);
+	}
+
+
+	public boolean sendKeys(By element, Keys keys){
+		try{
+			waitUntilPresent(element);
+			return sendKeys(getWebElement(element), keys);
+		} catch (Exception e){
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public boolean sendKeys(WebElement element, Keys keys){
 		try{
 			element.sendKeys(keys);
 		} catch (Exception e){
@@ -230,13 +261,13 @@ public class Automato {
 	}
 
 	public boolean waitUntilPresent(By element){
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(element));
 		return false;
 	}
 
 	public boolean waitUntilAllPresent(By element){
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(element));
 		return false;
 
