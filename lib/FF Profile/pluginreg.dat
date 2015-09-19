@@ -1,0 +1,114 @@
+Generated File. Do not edit.
+
+[HEADER]
+Version|0.17|$
+Arch|x86-msvc|$
+
+[PLUGINS]
+npGoogleUpdate3.dll|$
+D:\Program Files (x86)\Google\Update\1.3.28.13\npGoogleUpdate3.dll|$
+1.3.28.13|$
+1440880011577|0|0|0|$
+Google Update|$
+Google Update|$
+2
+0|application/x-vnd.google.update3webcontrol.3|||$
+1|application/x-vnd.google.oneclickctrl.9|||$
+npnv3dv.dll|$
+D:\Program Files (x86)\NVIDIA Corporation\3D Vision\npnv3dv.dll|$
+7.17.13.623|$
+1346351970000|0|0|0|$
+NVIDIA 3D Vision plugin for Mozilla browsers|$
+NVIDIA 3D Vision|$
+3
+0|image/jps|JPEG-based stereo image|jps|$
+1|image/pns|PNG-based stereo image|pns|$
+2|image/mpo|Multi-Picture Format image|mpo|$
+npnv3dvstreaming.dll|$
+D:\Program Files (x86)\NVIDIA Corporation\3D Vision\npnv3dvstreaming.dll|$
+7.17.13.623|$
+1346351974000|0|0|0|$
+NVIDIA 3D Vision Streaming plugin for Mozilla browsers|$
+NVIDIA 3D VISION|$
+1
+0|application/mozilla-3dv-streaming-plugin|npnv3dvstreaming|rts|$
+npjp2.dll|$
+D:\Program Files (x86)\Java\jre1.8.0_45\bin\plugin2\npjp2.dll|$
+11.45.2.14|$
+1429462917084|0|0|0|$
+Next Generation Java Plug-in 11.45.2 for Mozilla browsers|$
+Java(TM) Platform SE 8 U45|$
+38
+0|application/x-java-applet|Java Applet||$
+1|application/x-java-bean|JavaBeans||$
+2|application/x-java-vm|||$
+3|application/x-java-applet;version=1.1.1|||$
+4|application/x-java-bean;version=1.1.1|||$
+5|application/x-java-applet;version=1.1|||$
+6|application/x-java-bean;version=1.1|||$
+7|application/x-java-applet;version=1.2|||$
+8|application/x-java-bean;version=1.2|||$
+9|application/x-java-applet;version=1.1.3|||$
+10|application/x-java-bean;version=1.1.3|||$
+11|application/x-java-applet;version=1.1.2|||$
+12|application/x-java-bean;version=1.1.2|||$
+13|application/x-java-applet;version=1.3|||$
+14|application/x-java-bean;version=1.3|||$
+15|application/x-java-applet;version=1.2.2|||$
+16|application/x-java-bean;version=1.2.2|||$
+17|application/x-java-applet;version=1.2.1|||$
+18|application/x-java-bean;version=1.2.1|||$
+19|application/x-java-applet;version=1.3.1|||$
+20|application/x-java-bean;version=1.3.1|||$
+21|application/x-java-applet;version=1.4|||$
+22|application/x-java-bean;version=1.4|||$
+23|application/x-java-applet;version=1.4.1|||$
+24|application/x-java-bean;version=1.4.1|||$
+25|application/x-java-applet;version=1.4.2|||$
+26|application/x-java-bean;version=1.4.2|||$
+27|application/x-java-applet;version=1.5|||$
+28|application/x-java-bean;version=1.5|||$
+29|application/x-java-applet;version=1.6|||$
+30|application/x-java-bean;version=1.6|||$
+31|application/x-java-applet;version=1.7|||$
+32|application/x-java-bean;version=1.7|||$
+33|application/x-java-applet;jpi-version=1.8.0_45|||$
+34|application/x-java-bean;jpi-version=1.8.0_45|||$
+35|application/x-java-vm-npruntime|||$
+36|application/x-java-applet;deploy=11.45.2|||$
+37|application/x-java-applet;javafx=8.0.45|||$
+npdeployJava1.dll|$
+D:\Program Files (x86)\Java\jre1.8.0_45\bin\dtplugin\npdeployJava1.dll|$
+11.45.2.14|$
+1429462917037|0|0|0|$
+NPRuntime Script Plug-in Library for Java(TM) Deploy|$
+Java Deployment Toolkit 8.0.450.14|$
+1
+0|application/java-deployment-toolkit|||$
+np32dsw_1217157.dll|$
+D:\Windows\SysWOW64\Adobe\Director\np32dsw_1217157.dll|$
+12.1.7.157|$
+1424075030000|0|0|0|$
+Adobe Shockwave for Director Netscape plug-in, version 12.1.7.157|$
+Shockwave for Director|$
+1
+0|application/x-director|Shockwave Movie|dir,dxr,dcr|$
+npUnity3D32.dll|$
+D:\Users\Stefan Kraus\AppData\LocalLow\Unity\WebPlayer\loader\npUnity3D32.dll|$
+5.0.1.11919|$
+1427455412000|0|0|0|$
+Unity Player 5.0.1f1|$
+Unity Player|$
+1
+0|application/vnd.unity|Unity Player datafile|unity3d|$
+npGoogleUpdate3.dll|$
+D:\Users\Stefan Kraus\AppData\Local\Google\Update\1.3.28.13\npGoogleUpdate3.dll|$
+1.3.28.13|$
+1440947862689|0|0|0|$
+Google Update|$
+Google Update|$
+2
+0|application/x-vnd.google.update3webcontrol.3|||$
+1|application/x-vnd.google.oneclickctrl.9|||$
+
+[INVALID]
