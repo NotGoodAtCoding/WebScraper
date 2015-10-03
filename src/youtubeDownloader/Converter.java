@@ -37,14 +37,12 @@ public class Converter extends Automato{
 		
 		initiateDownload();
 		
-		//wait for stupid anti-adblock to expire. Those trashcans...
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		//wait for stupid anti-adblock to expire.
+		goToSleep(10);
 		
-		waitForDownload();
+		if(!waitForDownload()){
+			navHome();
+		}
 		
 		initiateDownload();
 		System.out.println("SONG: '" + video.songName + "' DL'd!!");
@@ -87,15 +85,14 @@ public class Converter extends Automato{
 	private boolean waitForDownload(){
 		for(int i=0; i<10; i++){
 			if(!getWebElement(DOWNLOAD_BUTTON_XPATH).getAttribute("class").contains("afterdownload")){
-				try {
-					Thread.sleep(10000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				goToSleep(10);
 			}
 			else return true;
 		}
 		return false;
 	}
-	
+
+	private boolean navHome(){
+		explicitWaitAndClick(
+	}
 }

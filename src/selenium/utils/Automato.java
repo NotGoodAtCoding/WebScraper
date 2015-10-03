@@ -285,4 +285,13 @@ public class Automato {
 		}
 		return true;
 	}
+	
+	//I know hard waits are bad, but the website is bad.
+	public void goToSleep(int seconds){
+		try {
+			Thread.sleep(seconds * 1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 }
