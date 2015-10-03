@@ -93,6 +93,7 @@ public class Converter extends Automato{
 	}
 
 	private boolean navHome(){
-		explicitWaitAndClick(
+		//explicitWaitAndClick(
+		return false;
 	}
 }
