@@ -8,6 +8,7 @@ import selenium.utils.Automato;
 
 public class Converter extends Automato{
 
+	//xpaths that are just ID finders are in case of concatenation needs
 	public static final String INPUT_FORM_ID = "id=search";
 	public static final String SUBMIT_XPATH = "xpath=//*[@id='search-wrapper']/input[2]";
 	public static final String SONG_TITLE_INPUT_XPATH = "xpath=//*[@id='refreshedtitle']";
@@ -84,14 +85,17 @@ public class Converter extends Automato{
 	}
 	
 	private boolean waitForDownload(){
-		while(!getWebElement(DOWNLOAD_BUTTON_XPATH).getAttribute("class").contains("afterdownload")){
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		for(int i=0; i<10; i++){
+			if(!getWebElement(DOWNLOAD_BUTTON_XPATH).getAttribute("class").contains("afterdownload")){
+				try {
+					Thread.sleep(10000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
+			else return true;
 		}
-		return true;
+		return false;
 	}
 	
 }

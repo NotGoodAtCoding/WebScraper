@@ -43,6 +43,11 @@ public class Video {
 	}
 
 	public void parseTitle(){
+		if(title.indexOf("-") == -1){
+			this.artist = "";
+			this.songName = title;
+			return;
+		}
 		this.artist = title.substring(0, title.indexOf("-") -1);
 		this.songName = title.substring(title.indexOf("-") +2).replaceAll("\"", "");
 		
