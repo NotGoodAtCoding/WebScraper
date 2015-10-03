@@ -1,2 +1,0 @@
-# WebScraper
-Web Scraper
