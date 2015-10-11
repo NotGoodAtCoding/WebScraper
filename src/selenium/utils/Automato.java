@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -51,7 +52,6 @@ public class Automato {
 
 	/**
 	 * TESTED
-	 * FIXME: Code looks bad, might want to redo how this and setupBrowser are done.
 	 * @param Url
 	 * @return
 	 */
@@ -107,6 +107,10 @@ public class Automato {
 		return false;
 	}
 
+	public void thirdRightClickOption(String locator){
+		Actions action= new Actions(driver);
+		action.contextClick(getWebElement(locator)).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).build().perform();
+	}
 	//END OF CLICK BLOCK
 
 	//START OF GET BY ELEMENT BLOCK
