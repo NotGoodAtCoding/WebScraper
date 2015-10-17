@@ -11,10 +11,7 @@ public class FlikrRunner extends Automato {
 		fRun.downloadAll();
 	}
 
-	private static final String IMAGE_XPATH = "xpath=/html/body/div[1]/div/div[2]/div/div[1]/img[2]";
-	private static final String NEXT_XPATH = "xpath=/html/body/div[1]/div/div[2]/div/a[1]";
-
-	private ArrayList<String> links = new ArrayList<String>();
+	private static ArrayList<String> links = new ArrayList<String>();
 
 	public FlikrRunner() {
 		super("https://www.flickr.com/photos/54557225@N05/21269879058/in/album-72157658622513046/");
@@ -27,29 +24,34 @@ public class FlikrRunner extends Automato {
 
 	public void getAllLinks(){
 		for(int i=0; i<400; i++){
-			if(!getLinkOnPage()) break;
-			navToNextPage();
+			if(!getLinkOnPage()) System.out.println("Link Fetch Failure");;
+			if(!navToNextPage()) break;
 		}
 	}
 
 	public boolean getLinkOnPage(){
-		String link = getWebElement(IMAGE_XPATH).getAttribute("src");
-		//if(links.contains(link)) return false;
+		String link = getWebElement("xpath=//img[@class='main-photo']").getAttribute("src");
+		
+		if(links.contains(link)) return false;
+		if(link.equals("")){
+			System.out.println("Link on page not found");
+			return true;
+		}
 		links.add(link);
 		System.out.println(link);
 		return true;
 	}
 
-	public void navToNextPage(){
-		click(NEXT_XPATH);
-		goToSleep(2);
+	public boolean navToNextPage(){
+		if(!click("xpath=//a[@class='navigate-target navigate-next']")) return false;
+		return true;
 	}
 
 	public void downloadAllLinks(){
 		for(String link : links){
 			get(link);
-			goToSleep(1);
 			thirdRightClickOption("xpath=/html/body/img");
+			goToSleep(5);
 		}
 	}
 }
