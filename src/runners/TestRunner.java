@@ -8,39 +8,39 @@ import selenium.utils.Automato;
 public class TestRunner {
 
 	public static void main(String[] args) {
-		Automato autist = new Automato("http://nutritiondata.self.com/");
+		Automato auto = new Automato("http://nutritiondata.self.com/");
 		
-		if(autist.exists("id='selflogo'")){
+		if(auto.exists("id='selflogo'")){
 			System.out.println("Self Logo Exists");
 		}
 		
-		if(autist.clickIfExists("id='selflogo'")){
+		if(auto.clickIfExists("id='selflogo'")){
 			System.out.println("Self Logo Clicked");
 		}
 		
-		if(autist.exists(SelfAutomato.SEARCH_BAR_XPATH_LOCATOR)){
+		if(auto.exists(SelfAutomato.SEARCH_BAR_XPATH_LOCATOR)){
 			System.out.println("Search Bar Found");
 		}
 		
-		if(autist.sendKeys(SelfAutomato.SEARCH_BAR_XPATH_LOCATOR, "Chicken Breast")){
+		if(auto.sendKeys(SelfAutomato.SEARCH_BAR_XPATH_LOCATOR, "Chicken Breast")){
 			System.out.println("Keys Sent");
 		}
 		
-		if(autist.clickIfExists("class=searchNow")){
+		if(auto.clickIfExists("class=searchNow")){
 			System.out.println("Search Started");
 		}
 		
-		if(autist.exists(SelfAutomato.FOOD_SEARCH_RESULTS_LOCATOR)){
+		if(auto.exists(SelfAutomato.FOOD_SEARCH_RESULTS_LOCATOR)){
 			System.out.println("Search Results Found:");
 		}
 		
 		//TODO: Create Method with this functionality
-		List<WebElement> weList = autist.getWebElements(SelfAutomato.FOOD_SEARCH_RESULTS_LOCATOR);
+		List<WebElement> weList = auto.getWebElements(SelfAutomato.FOOD_SEARCH_RESULTS_LOCATOR);
 		for(WebElement we : weList){
 			System.out.println(we.getText());
 		}
 		
-		autist.quitDriver();
+		auto.quitDriver();
 	}
 
 }
