@@ -125,7 +125,15 @@ public class Automato {
 	}
 
 	public boolean exists(By element){
-		return !getWebElement(element).equals(null);
+		try{
+			if(driver.findElement(element)== null || driver.findElements(element).isEmpty()){
+				return false;
+			}
+		}
+		catch (Exception e){
+			return false;
+		}
+		return true;
 	}
 
 	public By getByElement(String locator){
@@ -139,7 +147,7 @@ public class Automato {
 		else if(locator.startsWith("name=")){
 			element = By.name(locator.replaceAll("value=", "").trim().replaceAll("['\"]", ""));
 		}
-		else if(locator.startsWith("xpath=")){
+		else if(locator.startsWith("xpath=") || locator.startsWith("/")){
 			element = By.xpath(locator.replaceAll("xpath=", "").trim().replaceAll("[\"]", ""));
 		}
 		else{
@@ -198,6 +206,9 @@ public class Automato {
 
 	//START OF KEYSEND BLOCK
 
+	/**
+	 * arg0: locator, arg1: keys to send
+	 */
 	public boolean sendKeys(String locator, String keys){
 		return sendKeys(getByElement(locator), keys);
 	}
@@ -207,7 +218,7 @@ public class Automato {
 			waitUntilPresent(element);
 			return sendKeys(getWebElement(element), keys);
 		} catch (Exception e){
-			e.printStackTrace();
+			System.out.println("sendKeys FAILED for element: " + element.toString());
 			return false;
 		}
 	}
